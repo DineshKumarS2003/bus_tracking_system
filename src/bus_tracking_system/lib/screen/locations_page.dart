@@ -9,11 +9,19 @@ class LocationsPage extends StatefulWidget {
 
 class _LocationsPageState extends State<LocationsPage> {
   List<String> _locations = [
-    'Prem Nagar UPES',
-    'Clock Tower',
+    'Intercity',
+    'Orange Travels',
     'Dehradun ISBT',
     'Bidholi',
     'Kandholi',
+  ];
+
+  List<String> drivers = [
+    'Jhon',
+    'Durairaj',
+    'Rajesh',
+    'Dinesh',
+    'Balaji',
   ];
 
   void _showLogoutConfirmationDialog() {
@@ -139,15 +147,15 @@ class _LocationsPageState extends State<LocationsPage> {
                     ),
                     SizedBox(height: 5),
                     Text(
-                      'Driver: John Doe',
+                      'Driver: ${drivers[index]}',
                       style: TextStyle(
                         fontWeight: FontWeight.normal,
                         fontSize: 12,
                       ),
                     ),
                     SizedBox(height: 5),
-                    Text(
-                      'Phone: +91-7894521642',
+                    const Text(
+                      'Phone: +91 7894521642',
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.normal,
@@ -163,19 +171,19 @@ class _LocationsPageState extends State<LocationsPage> {
                           ),
                         );
                       },
-                      child: Text(
-                        'Track in Map',
-                        style: TextStyle(color: Colors.white),
-                      ),
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.blue,
-                        padding: EdgeInsets.symmetric(
+                        backgroundColor: Colors.blue,
+                        padding: const EdgeInsets.symmetric(
                           horizontal: 50,
                           vertical: 15,
                         ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
+                      ),
+                      child: const Text(
+                        'Track Bus',
+                        style: TextStyle(color: Colors.white),
                       ),
                     ),
                   ],

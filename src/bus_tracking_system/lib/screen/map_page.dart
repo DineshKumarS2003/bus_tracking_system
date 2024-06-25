@@ -23,7 +23,7 @@ class MapPage extends StatelessWidget {
             ElevatedButton(
               child: Text('Select Route'),
               style: ElevatedButton.styleFrom(
-                primary: Colors.pink,
+                backgroundColor: Colors.pink,
                 padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),

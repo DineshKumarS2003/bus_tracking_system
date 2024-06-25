@@ -112,11 +112,13 @@ class _BusTrackingState extends State<BusTracking> {
     //   }
     // });
     // Initialize Firebase Database reference
-    try{
-      final dbReference = FirebaseDatabase.instance.ref().child('DestinationLocation');
+    try {
+      final dbReference =
+          FirebaseDatabase.instance.ref().child('DestinationLocation');
       dbReference.once().then((DatabaseEvent databaseEvent) {
         if (databaseEvent.snapshot.value != null) {
-          final destinationLocationData = databaseEvent.snapshot.value as Map<dynamic, dynamic>;
+          final destinationLocationData =
+              databaseEvent.snapshot.value as Map<dynamic, dynamic>;
           final latitude = destinationLocationData['latitude'] as double?;
           final longitude = destinationLocationData['longitude'] as double?;
           print(latitude);
@@ -129,8 +131,7 @@ class _BusTrackingState extends State<BusTracking> {
           }
         }
       });
-    }
-    catch (e) {
+    } catch (e) {
       throw Exception("Error accessing Firebase Database");
     }
 
@@ -426,7 +427,8 @@ class _BusTrackingState extends State<BusTracking> {
           Expanded(
             child: FlutterMap(
               options: MapOptions(
-                center: LatLng(destinationLocation.latitude, destinationLocation.longitude),
+                center: LatLng(destinationLocation.latitude,
+                    destinationLocation.longitude),
                 zoom: 15.0,
               ),
               children: [
@@ -452,7 +454,8 @@ class _BusTrackingState extends State<BusTracking> {
                     Marker(
                       width: 35.0,
                       height: 35.0,
-                      point: LatLng(destinationLocation.latitude, destinationLocation.longitude),
+                      point: LatLng(destinationLocation.latitude,
+                          destinationLocation.longitude),
                       builder: (ctx) => Container(
                         child: Image.asset(
                           'assets/images/busicon.png', //Custom Bus icon
@@ -499,7 +502,6 @@ class _BusTrackingState extends State<BusTracking> {
                   // calculateDistanceAndTime();isLoading ? null : calculateDistanceAndTime,
                   ElevatedButton(
                     onPressed: () {
-                      
                       isLoading
                           ? null
                           : calculateDistanceAndTime().then((value) {

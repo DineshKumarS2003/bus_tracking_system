@@ -1,18 +1,19 @@
-import 'package:bus_tracking_system/screen/driverlogin.dart';
+import 'package:bus_tracking_system/screen/DriverDashboard.dart';
 import 'package:bus_tracking_system/services/authServices.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:bus_tracking_system/screen/locations_page.dart';
+import 'package:bus_tracking_system/screen/DriverLoginPage.dart';
 // import 'package:location/location.dart';
 
-class UI extends StatefulWidget {
+class DriverLogin extends StatefulWidget {
   //is a
   @override
-  State<UI> createState() => _UIState();
+  State<DriverLogin> createState() => _DriverLoginState();
 }
 
-class _UIState extends State<UI> {
+class _DriverLoginState extends State<DriverLogin> {
   AuthService _auth = AuthService();
   bool isStudent = true;
   late final String email;
@@ -56,7 +57,7 @@ class _UIState extends State<UI> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    "assets/images/student_icon.png",
+                    "assets/images/driver icon.png",
                     height: 100,
                     width: 100,
                   ),
@@ -126,7 +127,7 @@ class _UIState extends State<UI> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (BuildContext context) {
-                          return LocationsPage();
+                          return DriverDashboard();
                         }),
                       );
                     },
@@ -149,27 +150,6 @@ class _UIState extends State<UI> {
                     ),
                   ),
                   SizedBox(height: 10),
-                  TextButton(
-                    onPressed: () {
-                      if (isStudent) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DriverLogin()),
-                        );
-                      } else {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LocationsPage()),
-                        );
-                      }
-                    },
-                    child: Text(
-                      isStudent ? 'Log in as Driver' : 'Log in as Student',
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ),
                 ],
               ))),
         ),

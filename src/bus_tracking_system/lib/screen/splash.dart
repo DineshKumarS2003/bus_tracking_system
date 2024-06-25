@@ -12,7 +12,7 @@ class _splashState extends State<splash> {
   @override
   void initState() {
     super.initState();
-_navigatetohome();
+    _navigatetohome();
   }
 
   _navigatetohome() async {
@@ -32,13 +32,13 @@ _navigatetohome();
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-              Center(
-                child:Image.asset(
-                  'assets/images/bus.png',
+                Center(
+                  child: Image.asset(
+                    'assets/images/bus.png',
+                  ),
                 ),
-              ),
                 Text(
-                  " UPES BUS TARCKER",
+                  "BUS TARCKER",
                   style: TextStyle(
                     height: 5,
                     color: Colors.blueAccent,
