@@ -1,3 +1,4 @@
+import 'package:bus_tracking_system/firebase_options.dart';
 import 'package:bus_tracking_system/screen/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,8 @@ import 'package:bus_tracking_system/screen/ui.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // initialize app
-  await Firebase.initializeApp(); // initialize Firebase
+  await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform); // initialize Firebase
   runApp(MyApp()); // run app
 }
 

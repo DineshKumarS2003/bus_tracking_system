@@ -1,13 +1,1 @@
-{
-  "functions": {
-    "source": "functions"
-  },
-  "hosting": {
-    "public": "build/web",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
-  }
-}
+{"flutter":{"platforms":{"android":{"default":{"projectId":"bus-tracking-app-cc700","appId":"1:342515837813:android:d0ce472d863b680239813c","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"bus-tracking-app-cc700","configurations":{"android":"1:342515837813:android:d0ce472d863b680239813c","ios":"1:342515837813:ios:5082f9e82907fa1f39813c","macos":"1:342515837813:ios:5082f9e82907fa1f39813c","web":"1:342515837813:web:e4bb148f1928739139813c","windows":"1:342515837813:web:b59f9a35a1458cbb39813c"}}}}}}

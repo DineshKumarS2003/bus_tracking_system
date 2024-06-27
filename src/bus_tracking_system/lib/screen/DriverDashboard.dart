@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lottie/lottie.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:location/location.dart';
 
 class DriverDashboard extends StatefulWidget {
@@ -30,6 +32,7 @@ class _DriverDashboardState extends State<DriverDashboard> {
   double? lat;
   double? lng;
   bool isGettingLocation = false;
+  CollectionReference? users;
 
   late DatabaseReference dbRef;
 
@@ -95,7 +98,14 @@ class _DriverDashboardState extends State<DriverDashboard> {
             height: 10,
           ),
           lat == null
-              ? const SizedBox()
+              ? isGettingLocation
+                  ? const CircularProgressIndicator(
+                      color: Colors.blue,
+                    )
+                  : const Text(
+                      'Click to Update Location',
+                      style: TextStyle(color: Colors.blue),
+                    )
               : isGettingLocation
                   ? const CircularProgressIndicator(
                       color: Colors.blue,
@@ -149,6 +159,9 @@ class _DriverDashboardState extends State<DriverDashboard> {
       setState(() {});
       log("Lat is ${lat.toString()}");
       log("Lng is ${lng.toString()}");
+      users = FirebaseFirestore.instance.collection('DestinationLocation');
+      setState(() {});
+      updateLocation(lat!, lng!);
       distanceBetween = Geolocator.distanceBetween(
           11.103675898462944, 77.02643639434434, lat!, lng!);
       print(Geolocator.distanceBetween(11.414595996555862, 79.00924599565325,
@@ -171,5 +184,17 @@ class _DriverDashboardState extends State<DriverDashboard> {
     }).catchError((e) {
       print(e);
     });
+  }
+
+  Future<void> updateLocation(double lat, double lng) {
+    // Call the user's CollectionReference to add a new user
+    return users!
+        .doc('A40qQsVZD4XHWzhJVSQM')
+        .update({
+          'latitude': lat, // John Doe
+          'longitude': lng,
+        })
+        .then((value) => print("Location Updated"))
+        .catchError((error) => print("Failed to add user: $error"));
   }
 }

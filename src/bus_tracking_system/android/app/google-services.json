@@ -1,37 +1,26 @@
 {
   "project_info": {
-    "project_number": "826614974960",
-    "firebase_url": "https://bustrackingsystem-62417-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "project_id": "bustrackingsystem-62417",
-    "storage_bucket": "bustrackingsystem-62417.appspot.com"
+    "project_number": "342515837813",
+    "project_id": "bus-tracking-app-cc700",
+    "storage_bucket": "bus-tracking-app-cc700.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:826614974960:android:a28ed6cd90ba76835a7535",
+        "mobilesdk_app_id": "1:342515837813:android:d0ce472d863b680239813c",
         "android_client_info": {
           "package_name": "com.example.bus_tracking_system"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "826614974960-reu5dcs437dgtmvfl0fle3148shk5qnm.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDFv8ji8r8hnt9WHNUf3oiJ_BaLFCK8n08"
+          "current_key": "AIzaSyC9YJntauYc0HlLIHv0KgMkITiyO5M8hzU"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "826614974960-reu5dcs437dgtmvfl0fle3148shk5qnm.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }
