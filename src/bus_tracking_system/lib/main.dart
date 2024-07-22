@@ -1,43 +1,29 @@
 import 'package:bus_tracking_system/firebase_options.dart';
-import 'package:bus_tracking_system/screen/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:bus_tracking_system/screen/ui.dart';
+
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'app/routes/app_pages.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // initialize app
-  await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform); // initialize Firebase
-  runApp(MyApp()); // run app
-}
+  WidgetsFlutterBinding.ensureInitialized();
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(),
-      home: splash(),
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  bool isLogin = pref.getBool("isLogin") ?? false;
+  bool isStudentLoggedIn = pref.getBool("isStudent") ?? false;
+  runApp(
+    GetMaterialApp(
+      title: "Application",
       debugShowCheckedModeBanner: false,
-    );
-  }
-}
-
-class LoginPage extends StatefulWidget {
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  bool isStudent = true;
-
-  void toggleLoginOption() {
-    setState(() {
-      isStudent = !isStudent;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return UI();
-  }
+      initialRoute: isLogin
+          ? isStudentLoggedIn
+              ? Routes.STUDENT_DASHBOARD
+              : Routes.DRIVER_DASHBOARD
+          : AppPages.INITIAL,
+      getPages: AppPages.routes,
+    ),
+  );
 }
