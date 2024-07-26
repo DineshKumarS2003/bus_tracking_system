@@ -6,7 +6,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 
 import '../controllers/student_dashboard_controller.dart';
 
@@ -50,19 +49,15 @@ class StudentDashboardView extends GetView<StudentDashboardController> {
                 ),
               ),
               ListTile(
-                title: const Text('Select Route'),
-                onTap: () {
-                  Get.back();
-                },
-              ),
-              ListTile(
-                title: const Text('Profile'),
-                onTap: () {
-                  Get.toNamed(Routes.PROFILE);
-                },
-              ),
-              ListTile(
-                title: const Text('Logout'),
+                title: const Row(
+                  children: [
+                    Text('Logout'),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Icon(Icons.logout)
+                  ],
+                ),
                 onTap: () {
                   Get.back();
                   controller.showAlertDialog(context);
@@ -79,7 +74,7 @@ class StudentDashboardView extends GetView<StudentDashboardController> {
             }
 
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             }
 
             List<BusData> busDataList = snapshot.data!.docs
@@ -235,17 +230,17 @@ class StudentDashboardView extends GetView<StudentDashboardController> {
             );
           },
         ),*/
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            controller.addData();
-          },
-          isExtended: T,
-          backgroundColor: Colors.blue,
-          child: const Text(
-            'ADD',
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () {
+        //     controller.addData();
+        //   },
+        //   isExtended: true,
+        //   backgroundColor: Colors.blue,
+        //   child: const Text(
+        //     'ADD',
+        //     style: TextStyle(color: Colors.white),
+        //   ),
+        // ),
       );
     });
   }

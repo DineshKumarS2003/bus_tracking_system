@@ -144,17 +144,22 @@ class StudentDashboardController extends GetxController {
 
   void addData() async {
     Map<String, dynamic> data = {
-      'RouteNo': 'T-4',
-      'College': 'SNSCT',
+      'RouteNo': 'E-7',
+      'College': 'SNSCE',
       'Route': [
-        "Veerapandi Pirivu",
-        "Jothipuram / Vannan Kovil",
-        "Vadamadurai",
-        "Thudiyalur",
-        'Cheran colony',
-        "Vellakinar",
-        "Dr SNS Arts",
+        "Tirupur  OBS",
+        "Collector office stop",
+        "Thennampalayam",
+        "Kumaran clg",
+        "Mangalam",
+        "Somanur",
+        "Karumathampatti",
+        "Kittampalayam",
       ],
+      'lat': "11.098698047234812",
+      "lng": "77.3485749399588",
+      "originLat": "11.098698047234812",
+      "originLng": "77.3485749399588"
     };
     CollectionReference users =
         FirebaseFirestore.instance.collection('BusData');

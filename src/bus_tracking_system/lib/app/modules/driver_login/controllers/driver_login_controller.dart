@@ -36,6 +36,7 @@ class DriverLoginController extends GetxController {
         email: email,
         password: password,
       );
+      pref!.setString("email", email);
       Get.defaultDialog(
         title: "Logging In",
         barrierDismissible: false,
@@ -54,7 +55,7 @@ class DriverLoginController extends GetxController {
           content: Text('Signed in as ${userCredential.user?.email}')));
       pref!.setBool("isLogin", true);
       pref!.setBool("isStudent", false);
-      Future.delayed(Duration(seconds: 2), () {
+      Future.delayed(const Duration(seconds: 2), () {
         Get.offAllNamed(Routes.DRIVER_DASHBOARD);
       });
 

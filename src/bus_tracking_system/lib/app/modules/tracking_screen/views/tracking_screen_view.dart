@@ -40,7 +40,7 @@ class TrackingScreenView extends GetView<TrackingScreenController> {
                         child: GoogleMap(
                       initialCameraPosition: CameraPosition(
                         target: controller.destinationLocation,
-                        zoom: 13,
+                        zoom: 11,
                       ),
                       markers: controller.markers.toSet(),
                       polylines: controller.polylines,

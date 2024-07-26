@@ -24,6 +24,7 @@ class TrackingScreenController extends GetxController {
   bool isLoading = false; //A flag to check the status of the api data loading
   late LatLng sourceLocation = const LatLng(0, 0);
   late LatLng destinationLocation = const LatLng(0, 0);
+  LatLng collegeLocation = const LatLng(11.100514313921465, 77.02668669630442);
   List<Marker> markers = [];
   List<LatLng> polylineCoordinates = [];
   PolylinePoints? polylinePoints;
@@ -42,7 +43,7 @@ class TrackingScreenController extends GetxController {
     super.onInit();
     polylinePoints = PolylinePoints();
     listenToBusLocation(index);
-    loadBusIcon();
+    await loadBusIcon();
     markers.add(Marker(
       markerId: const MarkerId("marker1"),
       position: const LatLng(11.100514313921465, 77.02668669630442),
@@ -62,6 +63,7 @@ class TrackingScreenController extends GetxController {
         );
       },
     ));
+
     try {
       CollectionReference users =
           FirebaseFirestore.instance.collection('BusData');
@@ -126,6 +128,28 @@ class TrackingScreenController extends GetxController {
         },
         // ignore: use_build_context_synchronously
         icon: busIcon!));
+    markers.add(Marker(
+      markerId: const MarkerId('originLocation'),
+      position: LatLng(
+          double.parse(data['originLat']), double.parse(data['originLng'])),
+      icon: BitmapDescriptor.defaultMarkerWithHue(250),
+      onTap: () {
+        showDialog(
+          context: Get.context!,
+          builder: (BuildContext context) => AlertDialog(
+            title: const Text('Start Location'),
+            content: const Text('This is Bus Starting Location '),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Ok'),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            ],
+          ),
+        );
+      },
+      infoWindow: const InfoWindow(title: 'Starting Location'),
+    ));
     log('Source point is $sourceLocation');
     update();
   }
@@ -154,43 +178,6 @@ class TrackingScreenController extends GetxController {
       log("The Count of the value is $count");
     });
   }
-
-  /* Future<void> checkLocation() async {
-    CollectionReference users =
-        FirebaseFirestore.instance.collection('DestinationLocation');
-    getData(users);
-    QuerySnapshot querySnapshot = await users.get();
-    // querySnapshot.docs.forEach((doc) {
-    //   log('${doc.data()}'); // Use doc.data() to get the data of each document
-    // });
-    final data = querySnapshot.docs[0];
-    LatLng tempLocation = sourceLocation;
-    sourceLocation = LatLng(data['latitude'], data['longitude']);
-    update();
-    if (tempLocation.latitude.toString().substring(0, 7) ==
-            sourceLocation.latitude.toString().substring(0, 7) &&
-        tempLocation.longitude.toString().substring(0, 7) ==
-            sourceLocation.longitude.toString().substring(0, 7)) {
-      count++;
-      if (count > 12) {
-        showDialog(
-          context: Get.context!,
-          builder: (BuildContext context) => AlertDialog(
-            title: const Text('Alert'),
-            content: const Text('Bus is waiting more than a Minute'),
-            actions: <Widget>[
-              TextButton(
-                child: const Text('Ok'),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-            ],
-          ),
-        );
-      }
-    }
-    log('Destination point is $sourceLocation');
-    update();
-  }*/
 
   Future<String?> getDocumentIdByIndex(String collectionPath, int index) async {
     QuerySnapshot querySnapshot =
@@ -239,18 +226,20 @@ class TrackingScreenController extends GetxController {
       icon: busIcon!,
       infoWindow: const InfoWindow(title: 'Bus Location'),
     );
+
     markers.add(marker!);
+
     polylineCoordinates.clear();
-    getPolyline(sourceLocation, destinationLocation);
+    getPolyline(sourceLocation, collegeLocation);
     update();
     distanceBetween = Geolocator.distanceBetween(
         sourceLocation.latitude,
         sourceLocation.longitude,
-        destinationLocation.latitude,
-        destinationLocation.longitude);
+        collegeLocation.latitude,
+        collegeLocation.longitude);
     update();
     //? (distanceBetween / 500) Here 500 is the average speed(50 Km/hr + 0)
-    travelTime = "${(distanceBetween / 500).toStringAsFixed(2)}";
+    travelTime = "${(distanceBetween / 400).toStringAsFixed(2)}";
     log('Time to travel is $travelTime');
     distance = (distanceBetween / 1000).toStringAsFixed(2);
     log('Distance Between Destination and Orgin is $distance');
@@ -346,14 +335,14 @@ class TrackingScreenController extends GetxController {
       distanceBetween = Geolocator.distanceBetween(
           sourceLocation.latitude,
           sourceLocation.longitude,
-          destinationLocation.latitude,
-          destinationLocation.longitude);
+          collegeLocation.latitude,
+          collegeLocation.longitude);
       update();
       distance = (distanceBetween / 1000).toStringAsFixed(2);
-      travelTime = "${(distanceBetween / 500).toStringAsFixed(2)}";
+      travelTime = "${(distanceBetween / 400).toStringAsFixed(2)}";
       log('Time to travel is $travelTime');
       log('Distance Between Destination and Orgin is $distance');
-      getPolyline(sourceLocation, destinationLocation);
+      getPolyline(sourceLocation, collegeLocation);
       update();
     }).catchError((e) {
       print(e);

@@ -32,15 +32,8 @@ class DriverDashboardView extends GetView<DriverDashboardController> {
             const SizedBox(
               height: 10,
             ),
-            const Text(
-              'Driver Name : Rajesh',
-              style: TextStyle(fontSize: 20),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Text(
-              'Bus Name : Intercity 1',
+            Text(
+              'Bus Route : ${controller.routeName}',
               style: TextStyle(fontSize: 20),
             ),
             const SizedBox(

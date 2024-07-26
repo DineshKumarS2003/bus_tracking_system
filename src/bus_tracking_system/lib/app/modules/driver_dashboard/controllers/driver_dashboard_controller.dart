@@ -16,6 +16,9 @@ class DriverDashboardController extends GetxController {
   //TODO: Implement DriverDashboardController
   AuthService auth = AuthService();
   bool isStudent = true;
+  SharedPreferences? pref;
+  String routeName = "";
+  String routeDocId = "";
   late final String email;
   late final String password;
   TextEditingController emailController = TextEditingController();
@@ -33,8 +36,18 @@ class DriverDashboardController extends GetxController {
 
   final count = 0.obs;
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
+    pref = await SharedPreferences.getInstance();
+    update();
+    var temp = pref!.getString("email")!;
+    update();
+    routeName =
+        temp.split("@").first.substring(0, 2).toUpperCase().split("").join("-");
+    log(routeName);
+    update();
+    await findDocumentByFieldValue("BusData", "RouteNo", routeName);
+    update();
   }
 
   void startTimer() {
@@ -78,12 +91,10 @@ class DriverDashboardController extends GetxController {
       update();
       log("Lat is ${lat.toString()}");
       log("Lng is ${lng.toString()}");
-      users = FirebaseFirestore.instance.collection('DestinationLocation');
+      users = FirebaseFirestore.instance.collection('BusData');
       updateLocation(lat!, lng!);
       distanceBetween = Geolocator.distanceBetween(
           11.103675898462944, 77.02643639434434, lat!, lng!);
-      print(Geolocator.distanceBetween(11.414595996555862, 79.00924599565325,
-          11.103759287213032, 77.02723365992713));
       update();
       isGettingLocation = false;
 
@@ -94,13 +105,34 @@ class DriverDashboardController extends GetxController {
     });
   }
 
+  Future<void> findDocumentByFieldValue(
+      String collectionPath, String fieldName, dynamic value) async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection(collectionPath)
+          .where(fieldName, isEqualTo: value)
+          .get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        querySnapshot.docs.forEach((doc) {
+          log('Document ID: ${doc.id}');
+          routeDocId = doc.id;
+        });
+      } else {
+        print('No documents found with $fieldName equal to $value');
+      }
+    } catch (e) {
+      print('Error finding document: $e');
+    }
+  }
+
   Future<void> updateLocation(double lat, double lng) {
     // Call the user's CollectionReference to add a new user
     return users!
-        .doc('A40qQsVZD4XHWzhJVSQM')
+        .doc(routeDocId)
         .update({
-          'latitude': lat, // John Doe
-          'longitude': lng,
+          'lat': lat.toString(), // John Doe
+          'lng': lng.toString(),
           'time': DateTime.now().toString()
         })
         .then((value) => print("Location Updated"))
