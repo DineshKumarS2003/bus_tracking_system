@@ -42,11 +42,11 @@ class LoginController extends GetxController {
       content: const CircularProgressIndicator(
         strokeWidth: 4,
         strokeCap: StrokeCap.round,
-        color: Colors.blue,
+        color: Colors.blueAccent,
       ),
       backgroundColor: Colors.white,
       titleStyle: const TextStyle(
-        color: Colors.blue,
+        color: Colors.blueAccent,
       ),
       middleTextStyle: const TextStyle(color: Colors.white),
     );

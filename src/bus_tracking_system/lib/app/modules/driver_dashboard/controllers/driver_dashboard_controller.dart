@@ -159,11 +159,11 @@ class DriverDashboardController extends GetxController {
       content: const CircularProgressIndicator(
         strokeWidth: 4,
         strokeCap: StrokeCap.round,
-        color: Colors.blue,
+        color: Colors.blueAccent,
       ),
       backgroundColor: Colors.white,
       titleStyle: const TextStyle(
-        color: Colors.blue,
+        color: Colors.blueAccent,
       ),
       middleTextStyle: const TextStyle(color: Colors.white),
     );
@@ -179,7 +179,7 @@ class DriverDashboardController extends GetxController {
     Widget cancelButton = TextButton(
       child: const Text(
         "Cancel",
-        style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w900),
+        style: TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.w900),
       ),
       onPressed: () {
         Get.back();
@@ -187,7 +187,8 @@ class DriverDashboardController extends GetxController {
     );
     Widget continueButton = TextButton(
       child: const Text("Yes",
-          style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w900)),
+          style:
+              TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.w900)),
       onPressed: () {
         Get.back();
         logout();

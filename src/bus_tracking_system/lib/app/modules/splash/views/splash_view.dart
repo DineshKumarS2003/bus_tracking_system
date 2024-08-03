@@ -22,7 +22,7 @@ class SplashView extends GetView<SplashController> {
                       'assets/images/bus.png',
                     ),
                   ),
-                  Text(
+                  const Text(
                     "BUS TARCKER",
                     style: TextStyle(
                       height: 5,
@@ -31,7 +31,9 @@ class SplashView extends GetView<SplashController> {
                       fontSize: 30.0,
                     ),
                   ),
-                  CircularProgressIndicator(),
+                  const CircularProgressIndicator(
+                    color: Colors.blueAccent,
+                  ),
                 ],
               )),
         ),

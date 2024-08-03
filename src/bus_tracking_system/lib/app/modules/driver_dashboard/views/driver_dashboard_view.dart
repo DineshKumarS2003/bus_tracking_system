@@ -10,7 +10,7 @@ class DriverDashboardView extends GetView<DriverDashboardController> {
     return GetBuilder<DriverDashboardController>(builder: (ControllerCallback) {
       return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.blueAccent,
           centerTitle: true,
           iconTheme: const IconThemeData(color: Colors.white),
           title: const Text(
@@ -52,15 +52,15 @@ class DriverDashboardView extends GetView<DriverDashboardController> {
             controller.lat == null
                 ? controller.isGettingLocation
                     ? const CircularProgressIndicator(
-                        color: Colors.blue,
+                        color: Colors.blueAccent,
                       )
                     : const Text(
                         'Click to Update Location',
-                        style: TextStyle(color: Colors.blue),
+                        style: TextStyle(color: Colors.blueAccent),
                       )
                 : controller.isGettingLocation
                     ? const CircularProgressIndicator(
-                        color: Colors.blue,
+                        color: Colors.blueAccent,
                       )
                     : const Text(
                         'Location Updated Successfully!',
@@ -76,7 +76,7 @@ class DriverDashboardView extends GetView<DriverDashboardController> {
                   controller.showAlertDialog(context);
                 },
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
+                    backgroundColor: Colors.blueAccent,
                     foregroundColor: Colors.white),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,

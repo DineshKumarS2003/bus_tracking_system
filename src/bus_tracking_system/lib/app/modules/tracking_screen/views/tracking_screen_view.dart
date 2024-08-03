@@ -29,7 +29,7 @@ class TrackingScreenView extends GetView<TrackingScreenController> {
                         height: 20,
                       ),
                       CircularProgressIndicator(
-                        color: Colors.blue,
+                        color: Colors.blueAccent,
                       )
                     ],
                   ),

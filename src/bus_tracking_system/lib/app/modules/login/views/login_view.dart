@@ -12,7 +12,7 @@ class LoginView extends GetView<LoginController> {
       return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.blueAccent,
           title: const Text(
             'BUS TRACKER',
             style: TextStyle(color: Colors.white),
@@ -28,58 +28,6 @@ class LoginView extends GetView<LoginController> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      "assets/images/student_icon.png",
-                      height: 100,
-                      width: 100,
-                    ),
-                    Text(
-                      controller.isStudent ? 'LOGIN' : 'LOGIN',
-                      style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    TextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      controller: controller.emailController,
-                      decoration: const InputDecoration(
-                        labelText: "Email",
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.email),
-                      ),
-                      validator: (value) {
-                        bool emailValid = RegExp(
-                                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-z0-9]+\.[a-zA-Z]+")
-                            .hasMatch(value!);
-
-                        if (value.isEmpty) {
-                          return "Enter Email";
-                        } else if (!emailValid) {
-                          return "Enter valid Email";
-                        }
-                      },
-                    ),
-                    const SizedBox(height: 10),
-                    TextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      controller: controller.passwordController,
-                      obscureText: controller.passToggle,
-                      decoration: InputDecoration(
-                        labelText: "Password",
-                        border: const OutlineInputBorder(),
-                        prefixIcon: const Icon(Icons.lock),
-                        suffixIcon: InkWell(
-                            onTap: () {
-                              controller.passToggle = !controller.passToggle;
-                              controller.update();
-                            },
-                            child: Icon(controller.passToggle
-                                ? Icons.visibility_off
-                                : Icons.visibility)),
-                      ),
-                    ),
                     const SizedBox(height: 20),
                     InkWell(
                       onTap: () {
@@ -94,7 +42,7 @@ class LoginView extends GetView<LoginController> {
                         ),
                         child: const Center(
                           child: Text(
-                            "Login",
+                            "Continue as a Student",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,

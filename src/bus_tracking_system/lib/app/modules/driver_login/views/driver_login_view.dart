@@ -56,6 +56,7 @@ class DriverLoginView extends GetView<DriverLoginController> {
                         } else if (!emailValid) {
                           return "Enter valid Email";
                         }
+                        return null;
                       },
                     ),
                     const SizedBox(height: 10),
@@ -82,15 +83,12 @@ class DriverLoginView extends GetView<DriverLoginController> {
                         } else if (controller.passController.text.length < 9) {
                           return "Password length should be more than 9 characters";
                         }
+                        return null;
                       },
                     ),
                     const SizedBox(height: 20),
                     InkWell(
                       onTap: () {
-                        Map<String, String> Students = {
-                          'email': controller.emailController.text,
-                          'password': controller.passController.text,
-                        };
                         controller.signIn(controller.emailController.text,
                             controller.passController.text);
                       },

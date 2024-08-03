@@ -38,7 +38,7 @@ class StudentDashboardView extends GetView<StudentDashboardController> {
             children: <Widget>[
               const DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: Colors.blueAccent,
                 ),
                 child: Text(
                   'Menu',
@@ -118,12 +118,44 @@ class StudentDashboardView extends GetView<StudentDashboardController> {
                                 ),
                               ),
                               const SizedBox(height: 5),
-                              Text(
-                                busData.college,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 12,
-                                ),
+                              // Text(
+                              //   busData.college,
+                              //   style: const TextStyle(
+                              //     fontWeight: FontWeight.normal,
+                              //     fontSize: 12,
+                              //   ),
+                              // ),
+
+                              Row(
+                                children: [
+                                  Text(
+                                    busData.route[0],
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 2,
+                                  ),
+                                  const Text(
+                                    "⇆",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 2,
+                                  ),
+                                  Text(
+                                    busData.college,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
                               ),
                               const SizedBox(height: 10),
                               ElevatedButton(
@@ -137,7 +169,7 @@ class StudentDashboardView extends GetView<StudentDashboardController> {
                                       });
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.blue,
+                                  backgroundColor: Colors.blueAccent,
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 50,
                                     vertical: 15,
@@ -208,7 +240,7 @@ class StudentDashboardView extends GetView<StudentDashboardController> {
                             Get.toNamed(Routes.TRACKING_SCREEN);
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue,
+                            backgroundColor: Colors.blueAccent,
                             padding: const EdgeInsets.symmetric(
                               horizontal: 50,
                               vertical: 15,
@@ -235,7 +267,7 @@ class StudentDashboardView extends GetView<StudentDashboardController> {
         //     controller.addData();
         //   },
         //   isExtended: true,
-        //   backgroundColor: Colors.blue,
+        //   backgroundColor: Colors.blueAccent,
         //   child: const Text(
         //     'ADD',
         //     style: TextStyle(color: Colors.white),
